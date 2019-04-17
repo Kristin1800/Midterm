@@ -1,2 +1,2 @@
 # Midterm
-Java class compiler
+Java class compiler written in python
