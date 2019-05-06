@@ -46,19 +46,26 @@ if oneComm.search(woComm):
     noComm = oneComm.sub("", woComm, count=2)
 print(spr)
 
+#Getting rid of spaces
+nospace = re.compile(r'(\s{2,})')
+
+if nospace.search(woComm, oneComm):
+    oneComm = nospace.sub("",woComm)
+
+
 
 # using regex to find and get rid of the imports
 impoState = re.compile(r'import\s+java\.(io.\*|util.Scanner|text.\*|awt.\*|util.regex.\*);', re.MULTILINE)
 
 impoCheck = re.compile(r'import\s+[\w.*]*;?')
 
-if not impoState.search(oneLine) and impoCheck.search(oneLine):
+if not impoState.search(oneComm) and impoCheck.search(oneComm):
     print("Something went wrong, check your import statements.")
-    print(impoCheck.findall(oneLine))
+    print(impoCheck.findall(oneComm))
     sys.exit()
 
-if impoState.search(oneLine):
-    noImpo = impoState.sub("", oneLine)
+if impoState.search(oneComm):
+    noImpo = impoState.sub("", oneComm)
 
 print(spr)
 
